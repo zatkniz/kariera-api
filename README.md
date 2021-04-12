@@ -31,12 +31,16 @@ A test api for kariera.gr build with
 
 ```bash
 $ npm install
+$ cp .env.example .env
 ```
+
+fill the connection string in .env
 
 ## Running the app
 
 ```bash
-$ docker-compuse up -d
+$ npm run build
+$ node dist/main
 ```
 
 ## Open Swagger

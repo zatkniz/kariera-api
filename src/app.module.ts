@@ -7,15 +7,13 @@ import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { JobModule } from './job/job.module';
 import { CompanyModule } from './company/company.module';
-
 @Module({
   imports: [
     AuthModule,
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env'] }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: 'postgres://user:password@localhost:5432/db',
-      // url: process.env.DATABASE_URL,
+      url: `postgres://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`,
       autoLoadEntities: true,
       synchronize: true,
     }),
